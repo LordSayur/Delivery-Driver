@@ -16,15 +16,10 @@ public class Delivery : MonoBehaviour
         noPackageColor = spriteRenderer.color;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log(other.collider.name);
-    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Package" && !hasPackage)
         {
-            Debug.Log(other.name + " picked up.");
             hasPackage = true;
             spriteRenderer.color = withPackageColor;
             Destroy(other.gameObject);
@@ -32,7 +27,6 @@ public class Delivery : MonoBehaviour
 
         if (other.tag == "Customer" && hasPackage)
         {
-            Debug.Log(other.name + " delivered.");
             hasPackage = false;
             spriteRenderer.color = noPackageColor;
         }
